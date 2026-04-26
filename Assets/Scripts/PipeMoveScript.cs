@@ -3,7 +3,7 @@ using UnityEngine;
 public class PipeMoveScript : MonoBehaviour
 {
 
-    public float moveSpeed = 5;
+    [SerializeField] private float moveSpeed = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,6 +14,16 @@ public class PipeMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TanziScript.Instance.tanziIsAlive)
+        {
+            transform.position += Vector3.left * (moveSpeed * Time.deltaTime);
 
+        }
+
+        if (transform.position.x < -25)
+        {
+                Destroy(gameObject);
+                Debug.Log("Pipe destroyed");
+        }
     }
 }
