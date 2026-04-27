@@ -5,11 +5,11 @@ public class TanziScript : MonoBehaviour
     public static TanziScript Instance { get; private set; }
     public Rigidbody2D rb;
     public float flapStrength;
-    [SerializeField] private LogicScript logic;
     public bool tanziIsAlive = true;
+    [SerializeField] private AudioClip tanziScream;
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
     }
 
     private void Awake()
@@ -40,12 +40,16 @@ public class TanziScript : MonoBehaviour
 
     private void OnGameOver()
     {
-        LogicScript.Instance.GameOver();
-        tanziIsAlive = false;
+        if (tanziIsAlive)
+        {
+            LogicScript.Instance.GameOver();
+            tanziIsAlive = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        SoundFXManager.Instance.PlayGameSound(tanziScream, transform, 1.0f);
         OnGameOver();
     }
 }
