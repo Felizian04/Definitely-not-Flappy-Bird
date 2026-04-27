@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PipeMiddleScript : MonoBehaviour
 {
+    [SerializeField] private AudioClip audioClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +21,7 @@ public class PipeMiddleScript : MonoBehaviour
         if (other.gameObject.layer == 3 && TanziScript.Instance.tanziIsAlive)
         {
             LogicScript.Instance.AddScore();
+            SoundFXManager.Instance.playGameSound(audioClip, transform, 1.0f);
         }
     }
 }
