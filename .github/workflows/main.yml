@@ -14,13 +14,41 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          fetch-depth: 1
           lfs: true
+
+      - name: Disk usage before cleanup
+        run: |
+          df -h
+          docker system df
+
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          # Keep toolcache to avoid breaking actions that rely on it.
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
+
+      - name: Prune docker cache
+        run: |
+          docker system prune -af || true
+
+      - name: Disk usage after cleanup
+        run: |
+          df -h
+          docker system df
 
       - name: Cache Library
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-Unity
+          key: Library-${{ runner.os }}-${{ hashFiles('ProjectSettings/ProjectVersion.txt', 'Packages/manifest.json', 'Packages/packages-lock.json') }}
+          restore-keys: |
+            Library-${{ runner.os }}-
 
       - name: Build project
         uses: game-ci/unity-builder@v4
