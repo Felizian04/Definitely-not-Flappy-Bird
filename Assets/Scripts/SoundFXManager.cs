@@ -8,11 +8,13 @@ public class SoundFXManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
 
+        Instance = this;
     }
 
     public void PlayGameSound(AudioClip audioClip, Transform targetTransform, float volume)
