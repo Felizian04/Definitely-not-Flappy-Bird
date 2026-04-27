@@ -10,7 +10,7 @@ jobs:
   build:
     name: Test Build for Windows
     runs-on: ubuntu-latest
-    steps: # 'steps' muss eingerückt unter 'build' stehen
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
