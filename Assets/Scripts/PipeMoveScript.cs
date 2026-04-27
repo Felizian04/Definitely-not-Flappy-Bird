@@ -23,7 +23,9 @@ public class PipeMoveScript : MonoBehaviour
         if (transform.position.x < -25)
         {
                 Destroy(gameObject);
+#if UNITY_EDITOR
                 Debug.Log("Pipe destroyed");
+#endif
         }
     }
 }
