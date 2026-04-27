@@ -20,7 +20,7 @@ public class PipeMiddleScript : MonoBehaviour
         if (other.gameObject.layer == 3 && TanziScript.Instance.tanziIsAlive)
         {
             LogicScript.Instance.AddScore();
-            SoundFXManager.Instance.playGameSound(audioClip, transform, 1.0f);
+            SoundFXManager.Instance.PlayGameSound(audioClip, transform, 1.0f);
         }
     }
 }
