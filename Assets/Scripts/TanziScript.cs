@@ -43,13 +43,13 @@ public class TanziScript : MonoBehaviour
         if (tanziIsAlive)
         {
             LogicScript.Instance.GameOver();
+            SoundFXManager.Instance.PlayGameSound(tanziScream, transform, 1.0f);
             tanziIsAlive = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        SoundFXManager.Instance.PlayGameSound(tanziScream, transform, 1.0f);
         OnGameOver();
     }
 }
