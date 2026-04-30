@@ -38,7 +38,7 @@ public class TanziScript : MonoBehaviour
         }
     }
 
-    public void OnGameOver()
+    private void OnGameOver()
     {
         if (tanziIsAlive)
         {
