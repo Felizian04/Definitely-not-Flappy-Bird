@@ -5,7 +5,7 @@ public class StartMenuController : MonoBehaviour
 {
     public void onStartButtonPressed()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScreen");
     }
 
     public void onExitButtonPressed()
